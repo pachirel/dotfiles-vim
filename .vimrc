@@ -1,12 +1,12 @@
 scriptencoding utf-8
 
-" add runtimepathe .vim/bundle/* 
+" add runtimepathe .vim/bundle/*
 call pathogen#runtime_append_all_bundles()
 
 "set nocompatible  " Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start  " more powerful backspacing
 
-" Now we set some defaults for the editor 
+" Now we set some defaults for the editor
 set textwidth=0   " Don't wrap words by default
 set nobackup    " Don't keep a backup file
 " set viminfo='50,<1000,s100,\"50 " read/write a .viminfo file, don't store more than
@@ -62,8 +62,8 @@ set hlsearch
 set noincsearch
 "タブ文字の表示
 set list
-set listchars=tab:>-,trail:\ 
-"set listchars=tab:\ \ ,trail:\ 
+set listchars=tab:>-,trail:\
+"set listchars=tab:\ \ ,trail:\
 "
 " コメント行が連続するときはコメントに
 set formatoptions+=r
@@ -86,7 +86,7 @@ set autoread
 autocmd FileType svn :set fileencoding=utf-8
 autocmd FileType git :set fileencoding=utf-8
 
-set ambiwidth=double 
+set ambiwidth=double
 
 " タグファイルの自動セット
 if has("autochdir")
@@ -132,7 +132,7 @@ vnoremap k gk
 " 前回終了したカーソル行に移動
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
-" Functions 
+" Functions
 ",e でそのファイルを実行
 function! ShebangExecute()
   let m = matchlist(getline(1), '#!\(.*\)')
@@ -149,17 +149,17 @@ else
   nnoremap ,e :call ShebangExecute()<CR>
 end
 
-:function! HtmlEscape() 
-silent s/&/\&amp;/eg 
-silent s/</\&lt;/eg 
-silent s/>/\&gt;/eg 
-:endfunction 
+:function! HtmlEscape()
+silent s/&/\&amp;/eg
+silent s/</\&lt;/eg
+silent s/>/\&gt;/eg
+:endfunction
 
-:function! HtmlUnEscape() 
-silent s/&lt;/</eg 
-silent s/&gt;/>/eg 
-silent s/&amp;/\&/eg 
-:endfunction 
+:function! HtmlUnEscape()
+silent s/&lt;/</eg
+silent s/&gt;/>/eg
+silent s/&amp;/\&/eg
+:endfunction
 
 set t_Co=16
 set t_Sf=[3%dm
@@ -202,12 +202,7 @@ nnoremap enp :set nopaste<CR>
 " yanktmp.vim
 noremap <silent> sy :call YanktmpYank()<CR>
 noremap <silent> sp :call YanktmpPaste_p()<CR>
-
-if has('macunix')
-  noremap <silent> sY :call system("pbcopy", @0)<CR>
-  noremap <silent> sP :r! pbpaste<CR>
-end
-
+noremap <silent> sP :call YanktmpPaste_P()<CR>
 
 " for rails
 autocmd BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
@@ -238,7 +233,7 @@ set nofoldenable
 nnoremap zz za
 nnoremap zZ zA
 
-" htmlomni 
+" htmlomni
 " autocmd FileType html set filetype=xhtml
 
 " str2numchar.vim
@@ -309,21 +304,8 @@ function! Findgrep(arg)
 endfunction
 command! -nargs=1 Findgrep :call Findgrep(<f-args>)
 
-function! Ggrep(arg)
-  setlocal grepprg=git\ grep\ --no-color\ -n\ $*
-  silent execute ':grep '.a:arg
-  setlocal grepprg=git\ --no-pager\ submodule\ --quiet\ foreach\ 'git\ grep\ --full-name\ -n\ --no-color\ $*\ ;true'
-  silent execute ':grepadd '.a:arg
-  silent cwin
-  redraw!
-endfunction
-
-nnoremap <unique> gG :exec ':silent Ggrep ' . expand('<cword>')<CR>
-command! -nargs=1 -complete=buffer Gg call Ggrep(<q-args>)
-command! -nargs=1 -complete=buffer Ggrep call Ggrep(<q-args>)
-
 " changelog
-let g:changelog_username = "Yuichi Tateno"
+let g:changelog_username = "Yuta Shimizu"
 let g:changelog_dateformat = '== %Y-%m-%d'
 let g:changelog_new_entry_format= '  * %c'
 
@@ -337,7 +319,6 @@ nnoremap <silent> efj :FufMruFileInCwd!<CR>
 nnoremap <silent> eft :FufTag!<CR>
 nnoremap <silent> efT :FufTagWithCursorWord!<CR>
 autocmd FileType fuf nmap <C-c> <ESC>
-autocmd FileType fuf execute 'NeoComplCacheLock'
 let g:fuf_splitPathMatching = ' '
 let g:fuf_patternSeparator = ' '
 let g:fuf_modesDisable = ['mrucmd']
@@ -346,9 +327,7 @@ let g:fuf_mrufile_maxItem = 10000
 let g:fuf_enumeratingLimit = 20
 let g:fuf_previewHeight = 20
 
-command! FufGitGrep call fuf#script#launch('', 0, 'GitGrep>', 'bash', $HOME . '/bin/ggrep', 0)
-
-" Visualモードのpで上書きされたテキストをレジスタに入れない 
+" Visualモードのpで上書きされたテキストをレジスタに入れない
 vnoremap p "_c<C-r>"<ESC>
 
 " acp.vim
@@ -362,7 +341,7 @@ let g:acp_behaviorRubyOmniSymbolLength = -1
 " Insert モード抜けたら nopaste
 autocmd InsertLeave * set nopaste
 
-" ack.vim 
+" ack.vim
 let g:AckAllFiles=0
 
 " もとの ga を gA に割り当て
@@ -383,7 +362,7 @@ command! -range=% Source split `=tempname()` | call append(0, getbufline('#', <l
 autocmd BufRead * setlocal isfname+=- " どこかの plugin で上書きされてる？
 set isfname+=-
 
-" QuickFix のサイズ調整,自動で抜ける 
+" QuickFix のサイズ調整,自動で抜ける
 function! s:autoCloseQuickFix()
   let qllen = min([10, len(getqflist())])
   cclose
@@ -395,6 +374,9 @@ function! s:autoCloseQuickFix()
 endfunction
 
 autocmd QuickFixCmdPost * :call s:autoCloseQuickFix()
+
+" fugitive.vim
+nnoremap <unique> gG :exec ':silent Ggrep ' . expand('<cword>')<CR>
 
 " quickfix を閉じる
 nnoremap <unique> ec :cclose<CR>
@@ -468,31 +450,26 @@ let QFixHowm_Title = '='
 " endif
 
 " noexpandtab するディレクトリを指定
-autocmd BufNewFile,BufRead */chromekeyconfig/* setlocal noexpandtab 
+autocmd BufNewFile,BufRead */chromekeyconfig/* setlocal noexpandtab
 
 " debuglet
 autocmd BufWritePost */debuglet.js silent! execute '!debuglet.rb %'
 autocmd BufNewFile */debuglet.js silent! execute 'r!debuglet.rb'
 
 " NeoCompleCache.vim
-let g:neocomplcache_enable_at_startup = 1 
-let g:neocomplcache_enable_auto_select = 1 
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_auto_select = 1
 
 " Use smartcase.
-let g:neocomplcache_enable_ignore_case = 0
 let g:neocomplcache_enable_smart_case = 1
 " Use camel case completion.
 let g:neocomplcache_enable_camel_case_completion = 1
 " Use underbar completion.
 let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3 
-let g:neocomplcache_enable_quick_match = 1
-let g:neocomplcache_enable_wildcard = 1
+let g:neocomplcache_min_syntax_length = 3
 
-nnoremap <silent> ent :NeoComplCacheCachingTags<CR>
-
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>" 
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 " <CR>: close popup and save indent.
 " inoremap <expr><CR>  neocomplcache#smart_close_popup() . (&indentexpr != '' " ? "\<C-f>\<CR>X\<BS>":"\<CR>")
 " <TAB>: completion.
@@ -501,24 +478,25 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup() 
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" quickrun
-let g:quickrun_config = {
-      \   '*': {'runmode': 'async:vimproc'},
-      \ }
-
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " load ~/.vimrc.local
 if filereadable(expand('$HOME/.vimrc.local'))
   source ~/.vimrc.local
 endif
 
-
-
-
+set number
+if has('gui_running')
+  set transparency=20
+  set guifont=Bitstream\ Vera\ Sans\ Mono\ Bold:h10
+  set lines=80 columns=240
+  set guioptions=
+  set lsp=1
+endif
+nmap <ESC><ESC> :nohlsearch<CR><ESC>
+autocmd BufWritePre * :%s/\s\+$//ge
+autocmd InsertLeave,CmdwinLeave * set imdisable
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
