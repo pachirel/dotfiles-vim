@@ -1,3 +1,4 @@
+
 scriptencoding utf-8
 
 " add runtimepathe .vim/bundle/*
@@ -62,7 +63,7 @@ set hlsearch
 set noincsearch
 "タブ文字の表示
 set list
-set listchars=tab:>-,trail:\
+set listchars=tab:\ \ ,trail:\ 
 "set listchars=tab:\ \ ,trail:\
 "
 " コメント行が連続するときはコメントに
@@ -178,7 +179,7 @@ else
   highlight Visual ctermbg=8
 end
 
-highlight SpecialKey ctermbg=2
+highlight SpecialKey ctermbg=2 guibg=#ffcccc
 highlight MatchParen cterm=none ctermbg=15 ctermfg=0
 highlight Search ctermbg=5 ctermfg=0
 

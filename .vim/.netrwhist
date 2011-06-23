@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/shimizu/ws/git/okr2/app/views/group_budgets'
+let g:netrw_dirhist_2='/Users/shimizu/ws/git/okr2/app/views/top'
+let g:netrw_dirhist_3='/Users/shimizu/ws/git/okr2/app/views/action_priority_issues'
+let g:netrw_dirhist_4='/Users/shimizu/ws/git/cookpad/submodules'
+let g:netrw_dirhist_5='/Users/shimizu/ws/git/okr2/app/views/memberships'
+let g:netrw_dirhist_6='/Users/shimizu/ws/git/papa/app/views/pr/pages'
