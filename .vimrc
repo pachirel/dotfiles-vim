@@ -63,7 +63,7 @@ set hlsearch
 set noincsearch
 "タブ文字の表示
 set list
-set listchars=tab:\ \ ,trail:\ 
+set listchars=tab:\ \ ,trail:\
 "set listchars=tab:\ \ ,trail:\
 "
 " コメント行が連続するときはコメントに
@@ -487,13 +487,6 @@ if filereadable(expand('$HOME/.vimrc.local'))
 endif
 
 set number
-if has('gui_running')
-  set transparency=20
-  set guifont=Bitstream\ Vera\ Sans\ Mono\ Bold:h10
-  set lines=80 columns=240
-  set guioptions=
-  set lsp=1
-endif
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 autocmd BufWritePre * :%s/\s\+$//ge
 autocmd InsertLeave,CmdwinLeave * set imdisable
