@@ -488,9 +488,27 @@ endif
 
 set number
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
-autocmd BufWritePre * :%s/\s\+$//ge
 autocmd InsertLeave,CmdwinLeave * set imdisable
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
+
+highlight JpSpace cterm=none ctermbg=15 ctermfg=0
+au BufRead,BufNew * match JpSpace /　/
+
+function StripTrailingWhitespaces()
+  let pos = getpos(".")
+  %s/\s\+$//e
+  call setpos(".", pos)
+endfunction
+autocmd BufWritePre * :call StripTrailingWhitespaces()
+
+"autocmd WinEnter * call s:highlight_general_checkstyles()
+"function! s:highlight_general_checkstyles()
+" let w:m1=matchadd('WideSpace', '　', -1)
+" let w:m2=matchadd('EOLSpace', '\s\+$', -1)
+" let w:m3=matchadd('WideEisuu', '[Ａ-Ｚａ-ｚ０-９]', -1)
+" let w:m4=matchadd('SpaceAndComma', ' ,', -1)
+" let w:m5=matchadd('CommaAndNonSpace', ',[^(\\n| )]', -1)
+"endf
