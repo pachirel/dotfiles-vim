@@ -1,8 +1,8 @@
-
 scriptencoding utf-8
 
 " add runtimepathe .vim/bundle/*
-call pathogen#runtime_append_all_bundles()
+" call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 
 "set nocompatible  " Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start  " more powerful backspacing
@@ -131,7 +131,7 @@ vnoremap k gk
 " nnoremap - <C-W>-
 
 " 前回終了したカーソル行に移動
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
+" autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 " Functions
 ",e でそのファイルを実行
@@ -206,7 +206,6 @@ noremap <silent> sp :call YanktmpPaste_p()<CR>
 noremap <silent> sP :call YanktmpPaste_P()<CR>
 
 " for rails
-autocmd BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
 autocmd BufNewFile,BufRead app/**/*.erb set fenc=utf-8
 autocmd BufNewFile,BufRead app/**/*.haml set fenc=utf-8
 autocmd BufNewFile,BufRead app/**/*.rb set fenc=utf-8
@@ -504,11 +503,4 @@ function StripTrailingWhitespaces()
 endfunction
 autocmd BufWritePre * :call StripTrailingWhitespaces()
 
-"autocmd WinEnter * call s:highlight_general_checkstyles()
-"function! s:highlight_general_checkstyles()
-" let w:m1=matchadd('WideSpace', '　', -1)
-" let w:m2=matchadd('EOLSpace', '\s\+$', -1)
-" let w:m3=matchadd('WideEisuu', '[Ａ-Ｚａ-ｚ０-９]', -1)
-" let w:m4=matchadd('SpaceAndComma', ' ,', -1)
-" let w:m5=matchadd('CommaAndNonSpace', ',[^(\\n| )]', -1)
-"endf
+nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
