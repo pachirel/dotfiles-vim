@@ -1,10 +1,34 @@
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'ciaranm/detectindent'
+Bundle 'tpope/vim-endwise'
+Bundle 'pangloss/vim-javascript'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/neocomplcache'
+Bundle 'tpope/vim-haml'
+Bundle 'thinca/vim-quickrun'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-vividchalk'
+Bundle 'Shougo/vimshell'
+Bundle 'tpope/vim-fugitive'
+Bundle 'pachirel/vim-rails'
+Bundle 'vim-scripts/YankRing.vim'
+Bundle 'vim-scripts/L9'
+Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'kchmck/vim-coffee-script'
+
+filetype plugin indent on
+
 scriptencoding utf-8
 
-" add runtimepathe .vim/bundle/*
-" call pathogen#runtime_append_all_bundles()
-call pathogen#infect()
-
-"set nocompatible  " Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start  " more powerful backspacing
 
 " Now we set some defaults for the editor
@@ -32,7 +56,7 @@ syntax on
 if has("autocmd")
   filetype plugin on
   filetype indent on
-  " ã“ã‚Œã‚‰ã®ftã§ã¯ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆã‚’ç„¡åŠ¹ã«
+  " ‚±‚ê‚ç‚Ìft‚Å‚ÍƒCƒ“ƒfƒ“ƒg‚ğ–³Œø‚É
   " autocmd FileType php filetype indent off
   " autocmd FileType xhtml :set indentexpr=
 endif
@@ -43,7 +67,7 @@ augroup filetype
   au BufRead reportbug-*    set ft=mail
 augroup END
 "
-" ã‚¿ãƒ–å¹…ã®è¨­å®š
+" ƒ^ƒu•‚Ìİ’è
 set expandtab
 set tabstop=2
 set softtabstop=2
@@ -51,45 +75,45 @@ set shiftwidth=2
 set modelines=0
 
 set smartindent
-"æ¤œç´¢æ–‡å­—åˆ—ãŒå°æ–‡å­—ã®å ´åˆã¯å¤§æ–‡å­—å°æ–‡å­—ã‚’åŒºåˆ¥ãªãæ¤œç´¢ã™ã‚‹
+"ŒŸõ•¶š—ñ‚ª¬•¶š‚Ìê‡‚Í‘å•¶š¬•¶š‚ğ‹æ•Ê‚È‚­ŒŸõ‚·‚é
 set ignorecase
-"æ¤œç´¢æ–‡å­—åˆ—ã«å¤§æ–‡å­—ãŒå«ã¾ã‚Œã¦ã„ã‚‹å ´åˆã¯åŒºåˆ¥ã—ã¦æ¤œç´¢ã™ã‚‹
+"ŒŸõ•¶š—ñ‚É‘å•¶š‚ªŠÜ‚Ü‚ê‚Ä‚¢‚éê‡‚Í‹æ•Ê‚µ‚ÄŒŸõ‚·‚é
 set smartcase
-"æ¤œç´¢æ™‚ã«æœ€å¾Œã¾ã§è¡Œã£ãŸã‚‰æœ€åˆã«æˆ»ã‚‹
+"ŒŸõ‚ÉÅŒã‚Ü‚Ås‚Á‚½‚çÅ‰‚É–ß‚é
 set wrapscan
-" æ¤œç´¢ã§è‰²ã‚’ã¤ã‘ã‚‹
+" ŒŸõ‚ÅF‚ğ‚Â‚¯‚é
 set hlsearch
-"æ¤œç´¢æ–‡å­—åˆ—å…¥åŠ›æ™‚ã«é †æ¬¡å¯¾è±¡æ–‡å­—åˆ—ã«ãƒ’ãƒƒãƒˆã•ã›ãªã„
+"ŒŸõ•¶š—ñ“ü—Í‚É‡Ÿ‘ÎÛ•¶š—ñ‚Éƒqƒbƒg‚³‚¹‚È‚¢
 set noincsearch
-"ã‚¿ãƒ–æ–‡å­—ã®è¡¨ç¤º
+"ƒ^ƒu•¶š‚Ì•\¦
 set list
 set listchars=tab:\ \ ,trail:\
 "set listchars=tab:\ \ ,trail:\
 "
-" ã‚³ãƒ¡ãƒ³ãƒˆè¡ŒãŒé€£ç¶šã™ã‚‹ã¨ãã¯ã‚³ãƒ¡ãƒ³ãƒˆã«
+" ƒRƒƒ“ƒgs‚ª˜A‘±‚·‚é‚Æ‚«‚ÍƒRƒƒ“ƒg‚É
 set formatoptions+=r
-"å…¥åŠ›ä¸­ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«è¡¨ç¤ºã™ã‚‹
+"“ü—Í’†‚ÌƒRƒ}ƒ“ƒh‚ğƒXƒe[ƒ^ƒX‚É•\¦‚·‚é
 set showcmd
-"æ‹¬å¼§å…¥åŠ›æ™‚ã®å¯¾å¿œã™ã‚‹æ‹¬å¼§ã‚’è¡¨ç¤º
+"Š‡ŒÊ“ü—Í‚Ì‘Î‰‚·‚éŠ‡ŒÊ‚ğ•\¦
 set showmatch
-"ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ©ã‚¤ãƒ³ã‚’å¸¸ã«è¡¨ç¤º
+"ƒXƒe[ƒ^ƒXƒ‰ƒCƒ“‚ğí‚É•\¦
 set laststatus=2
-" ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ©ã‚¤ãƒ³ã®è¡¨ç¤º
+" ƒXƒe[ƒ^ƒXƒ‰ƒCƒ“‚Ì•\¦
 set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{']'}%y%{fugitive#statusline()}\ %F%=%l,%c%V%8P
-" ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³è£œé–“ã‚’ã‚·ã‚§ãƒ«ã£ã½ã
+" ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“•âŠÔ‚ğƒVƒFƒ‹‚Á‚Û‚­
 set wildmode=list:longest
-" ãƒãƒƒãƒ•ã‚¡ãŒç·¨é›†ä¸­ã§ã‚‚ãã®ä»–ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã‚‹ã‚ˆã†ã«
+" ƒoƒbƒtƒ@‚ª•ÒW’†‚Å‚à‚»‚Ì‘¼‚Ìƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚é‚æ‚¤‚É
 set hidden
-" å¤–éƒ¨ã®ã‚¨ãƒ‡ã‚£ã‚¿ã§ç·¨é›†ä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒå¤‰æ›´ã•ã‚ŒãŸã‚‰è‡ªå‹•ã§èª­ã¿ç›´ã™
+" ŠO•”‚ÌƒGƒfƒBƒ^‚Å•ÒW’†‚Ìƒtƒ@ƒCƒ‹‚ª•ÏX‚³‚ê‚½‚ç©“®‚Å“Ç‚İ’¼‚·
 set autoread
 
-" svn/git ã§ã®æ–‡å­—ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¨­å®š
+" svn/git ‚Å‚Ì•¶šƒGƒ“ƒR[ƒfƒBƒ“ƒOİ’è
 autocmd FileType svn :set fileencoding=utf-8
 autocmd FileType git :set fileencoding=utf-8
 
 set ambiwidth=double
 
-" ã‚¿ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®è‡ªå‹•ã‚»ãƒƒãƒˆ
+" ƒ^ƒOƒtƒ@ƒCƒ‹‚Ì©“®ƒZƒbƒg
 if has("autochdir")
   set autochdir
   set tags=tags;
@@ -97,36 +121,36 @@ else
   set tags=./tags,./../tags,./*/tags,./../../tags,./../../../tags,./../../../../tags,./../../../../../tags
 endif
 
-" tags ã®ã‚­ãƒ¼ãƒãƒƒãƒ”ãƒ³ã‚°ãŒ C-t ã ã¨ screen ã¨ã‹ã¶ã‚‹ã®ã§ C-z ã«
+" tags ‚ÌƒL[ƒ}ƒbƒsƒ“ƒO‚ª C-t ‚¾‚Æ screen ‚Æ‚©‚Ô‚é‚Ì‚Å C-z ‚É
 nnoremap <C-z> <C-t>
 
-" è¾æ›¸ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®å˜èªè£œé–“
+" «‘ƒtƒ@ƒCƒ‹‚©‚ç‚Ì’PŒê•âŠÔ
 set complete+=k
 
-" include ãƒ•ã‚¡ã‚¤ãƒ«ã¯ç„¡è¦–
+" include ƒtƒ@ƒCƒ‹‚Í–³‹
 " set complete-=i
 
-" C-]ã§tjumpã¨åŒç­‰ã®åŠ¹æœ
+" C-]‚Åtjump‚Æ“¯“™‚ÌŒø‰Ê
 nnoremap <C-]> g<C-]>
 
-" CD.vim example:// ã¯é©ç”¨ã—ãªã„
+" CD.vim example:// ‚Í“K—p‚µ‚È‚¢
 " autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | execute ":try | lcd " . escape(expand("%:p:h"), ' ') . ' | catch | endtry '  | endif
 
 if &term =~ "screen"
-  " screen Buffer åˆ‡ã‚Šæ›¿ãˆã§ screen ã«ãƒ•ã‚¡ã‚¤ãƒ«åã‚’è¡¨ç¤º
+  " screen Buffer Ø‚è‘Ö‚¦‚Å screen ‚Éƒtƒ@ƒCƒ‹–¼‚ğ•\¦
   autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | silent! exe '!echo -n "kv:%\\"' | endif
 endif
 
-" command line ã§ command window é–‹ã
+" command line ‚Å command window ŠJ‚­
 set cedit=<C-O>
 
-"è¡¨ç¤ºè¡Œå˜ä½ã§è¡Œç§»å‹•ã™ã‚‹
+"•\¦s’PˆÊ‚ÅsˆÚ“®‚·‚é
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" + - ã§ãƒãƒƒãƒ•ã‚¡ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºå¤‰æ›´
+" + - ‚Åƒoƒbƒtƒ@ƒEƒBƒ“ƒhƒEƒTƒCƒY•ÏX
 " nnoremap + <C-W>+
 " nnoremap - <C-W>-
 
@@ -134,7 +158,7 @@ vnoremap k gk
 " autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 " Functions
-",e ã§ãã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å®Ÿè¡Œ
+",e ‚Å‚»‚Ìƒtƒ@ƒCƒ‹‚ğÀs
 function! ShebangExecute()
   let m = matchlist(getline(1), '#!\(.*\)')
   if(len(m) > 2)
@@ -167,7 +191,7 @@ set t_Sf=[3%dm
 set t_Sb=[4%dm
 
 if !has('win32')
-  " è£œå®Œå€™è£œè‰²
+  " •âŠ®Œó•âF
   hi Pmenu ctermbg=8
   hi PmenuSel ctermbg=12
   hi PmenuSbar ctermbg=0
@@ -183,7 +207,7 @@ highlight SpecialKey ctermbg=2 guibg=#ffcccc
 highlight MatchParen cterm=none ctermbg=15 ctermfg=0
 highlight Search ctermbg=5 ctermfg=0
 
-" highlight ä¸Šæ›¸ã
+" highlight ã‘‚«
 autocmd VimEnter,WinEnter * highlight SpecialKey ctermbg=0
 autocmd VimEnter,WinEnter * highlight PmenuSel ctermbg=12
 
@@ -226,7 +250,7 @@ nnoremap ,y :YRShow<CR>
 " delete input line
 cnoremap <C-U> <C-E><C-U>
 
-" fold ä½¿ã‚ãªã„
+" fold g‚í‚È‚¢
 set nofoldenable
 
 " folding keymap
@@ -237,9 +261,9 @@ nnoremap zZ zA
 " autocmd FileType html set filetype=xhtml
 
 " str2numchar.vim
-" ç¯„å›²é¸æŠã—ã¦ã‚‹æ–‡å­—åˆ—ã‚’å¤‰æ›
-vnoremap <silent> sn :Stn2NumChar<CR> " ã‚ => &#12354;
-vnoremap <silent> sh :Str2HexLiteral<CR> " ã‚ => \\xE3\\x81\\x82
+" ”ÍˆÍ‘I‘ğ‚µ‚Ä‚é•¶š—ñ‚ğ•ÏŠ·
+vnoremap <silent> sn :Stn2NumChar<CR> " ‚  => &#12354;
+vnoremap <silent> sh :Str2HexLiteral<CR> " ‚  => \\xE3\\x81\\x82
 
 " surround.vim
 let g:surround_103 = "_('\r')"  " 103 = g
@@ -261,7 +285,7 @@ let g:surround_{char2nr('P')} = "\1method\1 {\2args\r..*\r|&|\2 \r }"
 nnoremap g' cs'g
 nnoremap g" cs"G
 
-" å‰ã®ãƒãƒƒãƒ•ã‚¡ã«ç§»å‹•ã‚’ Space ã«
+" ‘O‚Ìƒoƒbƒtƒ@‚ÉˆÚ“®‚ğ Space ‚É
 nnoremap <Space> <C-^>
 
 " nomatchparent
@@ -269,34 +293,34 @@ if !has('gui')
   let g:loaded_matchparen = 1
 end
 
-" insert æ™‚ã®å‰Šé™¤ç­‰ã®ãƒãƒƒãƒ”ãƒ³ã‚°
+" insert ‚Ìíœ“™‚Ìƒ}ƒbƒsƒ“ƒO
 inoremap <BS>  <C-G>u<BS>
 inoremap <C-H> <C-G>u<C-H>
 inoremap <C-W> <C-G>u<C-W>
 inoremap <C-U> <C-G>u<C-U>
 
-" gh ã§ hilight ã‚’æ¶ˆã™
+" gh ‚Å hilight ‚ğÁ‚·
 nnoremap <silent> gh :let @/=''<CR>
 
 set grepprg=internal
 
-" æ¤œç´¢ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã«å…¥ã£ã¦ã‚‹æ–‡å­—ã§ç¾åœ¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¤œç´¢ã—ã€quickfix ã§é–‹ã
+" ŒŸõƒŒƒWƒXƒgƒŠ‚É“ü‚Á‚Ä‚é•¶š‚ÅŒ»İ‚Ìƒtƒ@ƒCƒ‹‚ğŒŸõ‚µAquickfix ‚ÅŠJ‚­
 nnoremap <unique> g/ :exec ':vimgrep /' . getreg('/') . '/j %\|cwin'<CR>
-" G/ ã§ã¯ã™ã¹ã¦ã®ãƒãƒƒãƒ•ã‚¡
+" G/ ‚Å‚Í‚·‚×‚Ä‚Ìƒoƒbƒtƒ@
 " nnoremap <unique> G/ :silent exec ':cexpr "" \| :bufdo vimgrepadd /' . getreg('/') . '/j %'<CR>\|:silent cwin<CR>
 
-" ãªã‚“ã ã‚Œã“ã‚Œâ€¦
+" ‚È‚ñ‚¾‚ê‚±‚êc
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
-" ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰æ¤œç´¢
+" ƒoƒbƒtƒ@‚©‚çŒŸõ
 function! Bgrep(word)
-  cexpr '' " quickfix ã‚’ç©ºã«
+  cexpr '' " quickfix ‚ğ‹ó‚É
   silent exec ':bufdo | try | vimgrepadd ' . a:word . ' % | catch | endtry'
   silent cwin
 endfunction
 command! -nargs=1 Bgrep :call Bgrep(<f-args>)
 
-" å¼•æ•°ã®æ–‡å­—åˆ—ã‚’ã€ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªé…ä¸‹ã‹ã‚‰å†å¸°çš„ã«æ¤œç´¢
+" ˆø”‚Ì•¶š—ñ‚ğAƒfƒBƒŒƒNƒgƒŠ”z‰º‚©‚çÄ‹A“I‚ÉŒŸõ
 function! Findgrep(arg)
   let findgrep_cmd = 'find . -type f ! -regex ".*\.svn.*" ! -regex ".*\.git.*" ! -regex ".*\.sw.*" ! -regex ".*tags" -print0 |xargs -0 grep -n '
   cgetexpr system(findgrep_cmd . a:arg)
@@ -327,7 +351,7 @@ let g:fuf_mrufile_maxItem = 10000
 let g:fuf_enumeratingLimit = 20
 let g:fuf_previewHeight = 20
 
-" Visualãƒ¢ãƒ¼ãƒ‰ã®pã§ä¸Šæ›¸ãã•ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆã‚’ãƒ¬ã‚¸ã‚¹ã‚¿ã«å…¥ã‚Œãªã„
+" Visualƒ‚[ƒh‚Ìp‚Åã‘‚«‚³‚ê‚½ƒeƒLƒXƒg‚ğƒŒƒWƒXƒ^‚É“ü‚ê‚È‚¢
 vnoremap p "_c<C-r>"<ESC>
 
 " acp.vim
@@ -338,31 +362,31 @@ let g:acp_behaviorRubyOmniSymbolLength = -1
 " autocmd CmdwinEnter * AutoComplPopDisable
 " autocmd CmdwinLeave * AutoComplPopEnable
 
-" Insert ãƒ¢ãƒ¼ãƒ‰æŠœã‘ãŸã‚‰ nopaste
+" Insert ƒ‚[ƒh”²‚¯‚½‚ç nopaste
 autocmd InsertLeave * set nopaste
 
 " ack.vim
 let g:AckAllFiles=0
 
-" ã‚‚ã¨ã® ga ã‚’ gA ã«å‰²ã‚Šå½“ã¦
+" ‚à‚Æ‚Ì ga ‚ğ gA ‚ÉŠ„‚è“–‚Ä
 nnoremap gA ga
-" ga ã‚’ / ãƒ¬ã‚¸ã‚¹ã‚¿ã§ :Ack æ¤œç´¢ã€
+" ga ‚ğ / ƒŒƒWƒXƒ^‚Å :Ack ŒŸõA
 nnoremap ga :silent exec ':Ack ' . substitute(getreg('/'), '\v\\\<(.*)\\\>', "\\1", '')<CR>
 
-" ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®é«˜ã•ã‚’é¸æŠç¯„å›²ã¨åŒã˜ã«ãªã‚‹ã‚ˆã†èª¿æ•´
+" ƒEƒBƒ“ƒhƒE‚Ì‚‚³‚ğ‘I‘ğ”ÍˆÍ‚Æ“¯‚¶‚É‚È‚é‚æ‚¤’²®
 vnoremap <silent> _ <Esc>`<zt:execute (line("'>") - line("'<") + 1) 'wincmd' '_'<Return>
 
-" :Source ã§é¸æŠéƒ¨åˆ†ã ã‘ vimscript ã‚‹
+" :Source ‚Å‘I‘ğ•”•ª‚¾‚¯ vimscript ‚é
 " http://subtech.g.hatena.ne.jp/motemen/20080313/1205336864
 command! -range=% Source split `=tempname()` | call append(0, getbufline('#', <line1>, <line2>)) | write | source % | bdelete
-" autoread æ™‚ã« source ã—ãªãŠã™
+" autoread ‚É source ‚µ‚È‚¨‚·
 " autocmd BufWritePost,FileWritePost {*.vim,*vimrc} if &autoread | source <afile> | endif
 
-" - ã‚‚ fname ã«å«ã‚€
-autocmd BufRead * setlocal isfname+=- " ã©ã“ã‹ã® plugin ã§ä¸Šæ›¸ãã•ã‚Œã¦ã‚‹ï¼Ÿ
+" - ‚à fname ‚ÉŠÜ‚Ş
+autocmd BufRead * setlocal isfname+=- " ‚Ç‚±‚©‚Ì plugin ‚Åã‘‚«‚³‚ê‚Ä‚éH
 set isfname+=-
 
-" QuickFix ã®ã‚µã‚¤ã‚ºèª¿æ•´,è‡ªå‹•ã§æŠœã‘ã‚‹
+" QuickFix ‚ÌƒTƒCƒY’²®,©“®‚Å”²‚¯‚é
 function! s:autoCloseQuickFix()
   let qllen = min([10, len(getqflist())])
   cclose
@@ -378,16 +402,16 @@ autocmd QuickFixCmdPost * :call s:autoCloseQuickFix()
 " fugitive.vim
 nnoremap <unique> gG :exec ':silent Ggrep ' . expand('<cword>')<CR>
 
-" quickfix ã‚’é–‰ã˜ã‚‹
+" quickfix ‚ğ•Â‚¶‚é
 nnoremap <unique> ec :cclose<CR>
 
 " jptemplate.vim
 let g:jpTemplateKey = '<Tab>'
 
-" é©å½“ãªãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ
+" “K“–‚Èƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚Ìì¬
 command! -nargs=0 NewTmp :new `=tempname().'.vim'`
 
-" é©å½“ã« CSS ã‚’ JS ã½ãå¤‰æ›
+" “K“–‚É CSS ‚ğ JS ‚Û‚­•ÏŠ·
 function! CSSToJS(sLine, eLine)
   let prefix = ':'  . a:sLine . ',' . a:eLine  . 'substitute'
   let cmd = prefix . '/\v\-([a-z])/\u\1/g'
@@ -425,23 +449,23 @@ let QFixHowm_MruFileMax = 50
 let QFixHowm_Title = '='
 " let disable_MyQFix = 1
 
-"ã‚¿ã‚¤ãƒˆãƒ«ã«ä½•ã‚‚æ›¸ã‹ã‚Œã¦ã„ãªã„å ´åˆã€ã‚¨ãƒ³ãƒˆãƒªå†…ã‹ã‚‰é©å½“ãªæ–‡ã‚’æ¢ã—ã¦è¨­å®šã™ã‚‹ã€‚
-""æ–‡å­—æ•°ã¯åŠè§’æ›ç®—ã§æœ€å¤§ QFixHowm_Replace_Title_len æ–‡å­—ã¾ã§ä½¿ç”¨ã™ã‚‹ã€‚0ãªã‚‰ä½•ã‚‚ã—ãªã„ã€‚
+"ƒ^ƒCƒgƒ‹‚É‰½‚à‘‚©‚ê‚Ä‚¢‚È‚¢ê‡AƒGƒ“ƒgƒŠ“à‚©‚ç“K“–‚È•¶‚ğ’T‚µ‚Äİ’è‚·‚éB
+""•¶š”‚Í”¼ŠpŠ·Z‚ÅÅ‘å QFixHowm_Replace_Title_len •¶š‚Ü‚Åg—p‚·‚éB0‚È‚ç‰½‚à‚µ‚È‚¢B
 "let QFixHowm_Replace_Title_Len = 64
 
-"å¯¾è±¡ã«ãªã‚‹ã®ã¯ QFixHowm_Replace_Title_Pattern
-"ã®æ­£è¦è¡¨ç¾ã«ä¸€è‡´ã™ã‚‹ã‚¿ã‚¤ãƒˆãƒ«ãƒ‘ã‚¿ãƒ¼ãƒ³ã€‚
-""ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯æ¬¡ã®æ­£è¦è¡¨ç¾ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã€‚
+"‘ÎÛ‚É‚È‚é‚Ì‚Í QFixHowm_Replace_Title_Pattern
+"‚Ì³‹K•\Œ»‚Éˆê’v‚·‚éƒ^ƒCƒgƒ‹ƒpƒ^[ƒ“B
+""ƒfƒtƒHƒ‹ƒg‚Å‚ÍŸ‚Ì³‹K•\Œ»‚ªİ’è‚³‚ê‚Ä‚¢‚éB
 "let QFixHowm_Replace_Title_Pattern = '^'.g:QFixHowm_Title.'\s*$'
 
-"æ–°è¦ã‚¨ãƒ³ãƒˆãƒªã®éš›ã€æœ¬æ–‡ã‹ã‚‰æ›¸ãå§‹ã‚ã‚‹ã€‚
+"V‹KƒGƒ“ƒgƒŠ‚ÌÛA–{•¶‚©‚ç‘‚«n‚ß‚éB
 "let QFixHowm_Cmd_New = "i".QFixHowm_Title." \<CR>\<C-r>=strftime(\"[%Y-%m-%d%H:%M]\")\<CR>\<CR>\<ESC>$"
-"",Cã§æŒ¿å…¥ã•ã‚Œã‚‹æ–°è¦ã‚¨ãƒ³ãƒˆãƒªã®ã‚³ãƒãƒ³ãƒ‰
+"",C‚Å‘}“ü‚³‚ê‚éV‹KƒGƒ“ƒgƒŠ‚ÌƒRƒ}ƒ“ƒh
 "let QFixHowm_Key_Cmd_C = "o<ESC>".QFixHowm_Cmd_New
 
 " }}}
 
-" omnifunc ã‚’é©å½“ã«æœ‰åŠ¹åŒ–
+" omnifunc ‚ğ“K“–‚É—LŒø‰»
 " if has("autocmd") && exists("+omnifunc")
 "   autocmd Filetype *
 "         \   if &omnifunc == "" |
@@ -449,7 +473,7 @@ let QFixHowm_Title = '='
 "         \   endif
 " endif
 
-" noexpandtab ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æŒ‡å®š
+" noexpandtab ‚·‚éƒfƒBƒŒƒNƒgƒŠ‚ğw’è
 autocmd BufNewFile,BufRead */chromekeyconfig/* setlocal noexpandtab
 
 " debuglet
@@ -480,6 +504,9 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
+if filereadable(expand('$HOME/.vimrc.dir/fileencodings.vimrc'))
+  source ~/.vimrc.dir/fileencodings.vimrc
+endif
 " load ~/.vimrc.local
 if filereadable(expand('$HOME/.vimrc.local'))
   source ~/.vimrc.local
