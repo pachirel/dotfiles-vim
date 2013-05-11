@@ -21,8 +21,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'pachirel/vim-rails'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'vim-scripts/L9'
-Bundle 'vim-scripts/FuzzyFinder'
-Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'kien/ctrlp.vim'
 Bundle 'kchmck/vim-coffee-script'
 
 filetype plugin indent on
@@ -221,7 +220,6 @@ inoremap <C-U> <C-G>u<C-U>
 set grepprg=internal
 
 nnoremap <unique> g/ :exec ':vimgrep /' . getreg('/') . '/j %\|cwin'<CR>
-" nnoremap <unique> G/ :silent exec ':cexpr "" \| :bufdo vimgrepadd /' . getreg('/') . '/j %'<CR>\|:silent cwin<CR>
 
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
@@ -236,24 +234,6 @@ command! -nargs=1 Bgrep :call Bgrep(<f-args>)
 let g:changelog_username = "Yuta Shimizu"
 let g:changelog_dateformat = '== %Y-%m-%d'
 let g:changelog_new_entry_format= '  * %c'
-
-" fuf.vim
-nnoremap <unique> <silent> <C-S> :FufBuffer!<CR>
-nnoremap <unique> <silent> eff :FufFile!<CR>
-nnoremap <silent> es :FufBuffer!<CR>
-nnoremap <silent> ee :FufFileWithCurrentBuffer!<CR>
-nnoremap <silent> efm :FufMruFile!<CR>
-nnoremap <silent> efj :FufMruFileInCwd!<CR>
-nnoremap <silent> eft :FufTag!<CR>
-nnoremap <silent> efT :FufTagWithCursorWord!<CR>
-autocmd FileType fuf nmap <C-c> <ESC>
-let g:fuf_splitPathMatching = ' '
-let g:fuf_patternSeparator = ' '
-let g:fuf_modesDisable = ['mrucmd']
-let g:fuf_mrufile_exclude = '\v\~$|\.bak$|\.swp|\.howm$'
-let g:fuf_mrufile_maxItem = 10000
-let g:fuf_enumeratingLimit = 20
-let g:fuf_previewHeight = 20
 
 vnoremap p "_c<C-r>"<ESC>
 
@@ -335,6 +315,8 @@ endif
 
 set number
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
+nmap ; :
+
 autocmd InsertLeave,CmdwinLeave * set imdisable
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -351,4 +333,5 @@ function StripTrailingWhitespaces()
 endfunction
 autocmd BufWritePre * :call StripTrailingWhitespaces()
 
+" Open vimrc instantly
 nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
