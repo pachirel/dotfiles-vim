@@ -56,9 +56,6 @@ syntax on
 if has("autocmd")
   filetype plugin on
   filetype indent on
-  " ‚±‚ê‚ç‚Ìft‚Å‚ÍƒCƒ“ƒfƒ“ƒg‚ğ–³Œø‚É
-  " autocmd FileType php filetype indent off
-  " autocmd FileType xhtml :set indentexpr=
 endif
 
 " Some Debian-specific things
@@ -67,7 +64,6 @@ augroup filetype
   au BufRead reportbug-*    set ft=mail
 augroup END
 "
-" ƒ^ƒu•‚Ìİ’è
 set expandtab
 set tabstop=2
 set softtabstop=2
@@ -75,45 +71,28 @@ set shiftwidth=2
 set modelines=0
 
 set smartindent
-"ŒŸõ•¶š—ñ‚ª¬•¶š‚Ìê‡‚Í‘å•¶š¬•¶š‚ğ‹æ•Ê‚È‚­ŒŸõ‚·‚é
 set ignorecase
-"ŒŸõ•¶š—ñ‚É‘å•¶š‚ªŠÜ‚Ü‚ê‚Ä‚¢‚éê‡‚Í‹æ•Ê‚µ‚ÄŒŸõ‚·‚é
 set smartcase
-"ŒŸõ‚ÉÅŒã‚Ü‚Ås‚Á‚½‚çÅ‰‚É–ß‚é
 set wrapscan
-" ŒŸõ‚ÅF‚ğ‚Â‚¯‚é
 set hlsearch
-"ŒŸõ•¶š—ñ“ü—Í‚É‡Ÿ‘ÎÛ•¶š—ñ‚Éƒqƒbƒg‚³‚¹‚È‚¢
 set noincsearch
-"ƒ^ƒu•¶š‚Ì•\¦
 set list
 set listchars=tab:\ \ ,trail:\
-"set listchars=tab:\ \ ,trail:\
 "
-" ƒRƒƒ“ƒgs‚ª˜A‘±‚·‚é‚Æ‚«‚ÍƒRƒƒ“ƒg‚É
 set formatoptions+=r
-"“ü—Í’†‚ÌƒRƒ}ƒ“ƒh‚ğƒXƒe[ƒ^ƒX‚É•\¦‚·‚é
 set showcmd
-"Š‡ŒÊ“ü—Í‚Ì‘Î‰‚·‚éŠ‡ŒÊ‚ğ•\¦
 set showmatch
-"ƒXƒe[ƒ^ƒXƒ‰ƒCƒ“‚ğí‚É•\¦
 set laststatus=2
-" ƒXƒe[ƒ^ƒXƒ‰ƒCƒ“‚Ì•\¦
 set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{']'}%y%{fugitive#statusline()}\ %F%=%l,%c%V%8P
-" ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“•âŠÔ‚ğƒVƒFƒ‹‚Á‚Û‚­
 set wildmode=list:longest
-" ƒoƒbƒtƒ@‚ª•ÒW’†‚Å‚à‚»‚Ì‘¼‚Ìƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚é‚æ‚¤‚É
 set hidden
-" ŠO•”‚ÌƒGƒfƒBƒ^‚Å•ÒW’†‚Ìƒtƒ@ƒCƒ‹‚ª•ÏX‚³‚ê‚½‚ç©“®‚Å“Ç‚İ’¼‚·
 set autoread
 
-" svn/git ‚Å‚Ì•¶šƒGƒ“ƒR[ƒfƒBƒ“ƒOİ’è
 autocmd FileType svn :set fileencoding=utf-8
 autocmd FileType git :set fileencoding=utf-8
 
 set ambiwidth=double
 
-" ƒ^ƒOƒtƒ@ƒCƒ‹‚Ì©“®ƒZƒbƒg
 if has("autochdir")
   set autochdir
   set tags=tags;
@@ -121,36 +100,24 @@ else
   set tags=./tags,./../tags,./*/tags,./../../tags,./../../../tags,./../../../../tags,./../../../../../tags
 endif
 
-" tags ‚ÌƒL[ƒ}ƒbƒsƒ“ƒO‚ª C-t ‚¾‚Æ screen ‚Æ‚©‚Ô‚é‚Ì‚Å C-z ‚É
 nnoremap <C-z> <C-t>
 
-" «‘ƒtƒ@ƒCƒ‹‚©‚ç‚Ì’PŒê•âŠÔ
 set complete+=k
 
-" include ƒtƒ@ƒCƒ‹‚Í–³‹
-" set complete-=i
-
-" C-]‚Åtjump‚Æ“¯“™‚ÌŒø‰Ê
 nnoremap <C-]> g<C-]>
 
-" CD.vim example:// ‚Í“K—p‚µ‚È‚¢
-" autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | execute ":try | lcd " . escape(expand("%:p:h"), ' ') . ' | catch | endtry '  | endif
 
 if &term =~ "screen"
-  " screen Buffer Ø‚è‘Ö‚¦‚Å screen ‚Éƒtƒ@ƒCƒ‹–¼‚ğ•\¦
   autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | silent! exe '!echo -n "kv:%\\"' | endif
 endif
 
-" command line ‚Å command window ŠJ‚­
 set cedit=<C-O>
 
-"•\¦s’PˆÊ‚ÅsˆÚ“®‚·‚é
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" + - ‚Åƒoƒbƒtƒ@ƒEƒBƒ“ƒhƒEƒTƒCƒY•ÏX
 " nnoremap + <C-W>+
 " nnoremap - <C-W>-
 
@@ -158,7 +125,6 @@ vnoremap k gk
 " autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 " Functions
-",e ‚Å‚»‚Ìƒtƒ@ƒCƒ‹‚ğÀs
 function! ShebangExecute()
   let m = matchlist(getline(1), '#!\(.*\)')
   if(len(m) > 2)
@@ -167,35 +133,6 @@ function! ShebangExecute()
     execute '!' &ft ' %'
   endif
 endfunction
-
-if has('win32')
-  nnoremap ,e :execute '!' &ft ' %'<CR>
-else
-  nnoremap ,e :call ShebangExecute()<CR>
-end
-
-:function! HtmlEscape()
-silent s/&/\&amp;/eg
-silent s/</\&lt;/eg
-silent s/>/\&gt;/eg
-:endfunction
-
-:function! HtmlUnEscape()
-silent s/&lt;/</eg
-silent s/&gt;/>/eg
-silent s/&amp;/\&/eg
-:endfunction
-
-set t_Co=16
-set t_Sf=[3%dm
-set t_Sb=[4%dm
-
-if !has('win32')
-  " •âŠ®Œó•âF
-  hi Pmenu ctermbg=8
-  hi PmenuSel ctermbg=12
-  hi PmenuSbar ctermbg=0
-endif
 
 if !has('macunix')
   highlight Visual ctermbg=0
@@ -224,16 +161,6 @@ nnoremap <silent> ers :e ++enc=cp932 %<CR>
 nnoremap ep :set paste<CR>
 nnoremap enp :set nopaste<CR>
 
-" yanktmp.vim
-noremap <silent> sy :call YanktmpYank()<CR>
-noremap <silent> sp :call YanktmpPaste_p()<CR>
-noremap <silent> sP :call YanktmpPaste_P()<CR>
-
-" for rails
-autocmd BufNewFile,BufRead app/**/*.erb set fenc=utf-8
-autocmd BufNewFile,BufRead app/**/*.haml set fenc=utf-8
-autocmd BufNewFile,BufRead app/**/*.rb set fenc=utf-8
-
 " rails.vim
 let g:rails_level=4
 let g:rails_statusline=1
@@ -250,7 +177,6 @@ nnoremap ,y :YRShow<CR>
 " delete input line
 cnoremap <C-U> <C-E><C-U>
 
-" fold g‚í‚È‚¢
 set nofoldenable
 
 " folding keymap
@@ -259,11 +185,6 @@ nnoremap zZ zA
 
 " htmlomni
 " autocmd FileType html set filetype=xhtml
-
-" str2numchar.vim
-" ”ÍˆÍ‘I‘ğ‚µ‚Ä‚é•¶š—ñ‚ğ•ÏŠ·
-vnoremap <silent> sn :Stn2NumChar<CR> " ‚  => &#12354;
-vnoremap <silent> sh :Str2HexLiteral<CR> " ‚  => \\xE3\\x81\\x82
 
 " surround.vim
 let g:surround_103 = "_('\r')"  " 103 = g
@@ -285,7 +206,6 @@ let g:surround_{char2nr('P')} = "\1method\1 {\2args\r..*\r|&|\2 \r }"
 nnoremap g' cs'g
 nnoremap g" cs"G
 
-" ‘O‚Ìƒoƒbƒtƒ@‚ÉˆÚ“®‚ğ Space ‚É
 nnoremap <Space> <C-^>
 
 " nomatchparent
@@ -293,40 +213,24 @@ if !has('gui')
   let g:loaded_matchparen = 1
 end
 
-" insert ‚Ìíœ“™‚Ìƒ}ƒbƒsƒ“ƒO
 inoremap <BS>  <C-G>u<BS>
 inoremap <C-H> <C-G>u<C-H>
 inoremap <C-W> <C-G>u<C-W>
 inoremap <C-U> <C-G>u<C-U>
 
-" gh ‚Å hilight ‚ğÁ‚·
-nnoremap <silent> gh :let @/=''<CR>
-
 set grepprg=internal
 
-" ŒŸõƒŒƒWƒXƒgƒŠ‚É“ü‚Á‚Ä‚é•¶š‚ÅŒ»İ‚Ìƒtƒ@ƒCƒ‹‚ğŒŸõ‚µAquickfix ‚ÅŠJ‚­
 nnoremap <unique> g/ :exec ':vimgrep /' . getreg('/') . '/j %\|cwin'<CR>
-" G/ ‚Å‚Í‚·‚×‚Ä‚Ìƒoƒbƒtƒ@
 " nnoremap <unique> G/ :silent exec ':cexpr "" \| :bufdo vimgrepadd /' . getreg('/') . '/j %'<CR>\|:silent cwin<CR>
 
-" ‚È‚ñ‚¾‚ê‚±‚êc
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
-" ƒoƒbƒtƒ@‚©‚çŒŸõ
 function! Bgrep(word)
-  cexpr '' " quickfix ‚ğ‹ó‚É
+  cexpr '' " clear quickfix
   silent exec ':bufdo | try | vimgrepadd ' . a:word . ' % | catch | endtry'
   silent cwin
 endfunction
 command! -nargs=1 Bgrep :call Bgrep(<f-args>)
-
-" ˆø”‚Ì•¶š—ñ‚ğAƒfƒBƒŒƒNƒgƒŠ”z‰º‚©‚çÄ‹A“I‚ÉŒŸõ
-function! Findgrep(arg)
-  let findgrep_cmd = 'find . -type f ! -regex ".*\.svn.*" ! -regex ".*\.git.*" ! -regex ".*\.sw.*" ! -regex ".*tags" -print0 |xargs -0 grep -n '
-  cgetexpr system(findgrep_cmd . a:arg)
-  silent cwin
-endfunction
-command! -nargs=1 Findgrep :call Findgrep(<f-args>)
 
 " changelog
 let g:changelog_username = "Yuta Shimizu"
@@ -351,78 +255,22 @@ let g:fuf_mrufile_maxItem = 10000
 let g:fuf_enumeratingLimit = 20
 let g:fuf_previewHeight = 20
 
-" Visualƒ‚[ƒh‚Ìp‚Åã‘‚«‚³‚ê‚½ƒeƒLƒXƒg‚ğƒŒƒWƒXƒ^‚É“ü‚ê‚È‚¢
 vnoremap p "_c<C-r>"<ESC>
-
-" acp.vim
-let g:acp_behaviorHtmlOmniLength = -1
-let g:acp_behaviorRubyOmniMethodLength = -1
-let g:acp_behaviorRubyOmniSymbolLength = -1
 
 " autocmd CmdwinEnter * AutoComplPopDisable
 " autocmd CmdwinLeave * AutoComplPopEnable
 
-" Insert ƒ‚[ƒh”²‚¯‚½‚ç nopaste
+" nopaste after exit Insert mode
 autocmd InsertLeave * set nopaste
 
-" ack.vim
-let g:AckAllFiles=0
-
-" ‚à‚Æ‚Ì ga ‚ğ gA ‚ÉŠ„‚è“–‚Ä
-nnoremap gA ga
-" ga ‚ğ / ƒŒƒWƒXƒ^‚Å :Ack ŒŸõA
-nnoremap ga :silent exec ':Ack ' . substitute(getreg('/'), '\v\\\<(.*)\\\>', "\\1", '')<CR>
-
-" ƒEƒBƒ“ƒhƒE‚Ì‚‚³‚ğ‘I‘ğ”ÍˆÍ‚Æ“¯‚¶‚É‚È‚é‚æ‚¤’²®
 vnoremap <silent> _ <Esc>`<zt:execute (line("'>") - line("'<") + 1) 'wincmd' '_'<Return>
 
-" :Source ‚Å‘I‘ğ•”•ª‚¾‚¯ vimscript ‚é
+" :Source execute selected area as vimscript
 " http://subtech.g.hatena.ne.jp/motemen/20080313/1205336864
 command! -range=% Source split `=tempname()` | call append(0, getbufline('#', <line1>, <line2>)) | write | source % | bdelete
-" autoread ‚É source ‚µ‚È‚¨‚·
-" autocmd BufWritePost,FileWritePost {*.vim,*vimrc} if &autoread | source <afile> | endif
 
-" - ‚à fname ‚ÉŠÜ‚Ş
-autocmd BufRead * setlocal isfname+=- " ‚Ç‚±‚©‚Ì plugin ‚Åã‘‚«‚³‚ê‚Ä‚éH
-set isfname+=-
-
-" QuickFix ‚ÌƒTƒCƒY’²®,©“®‚Å”²‚¯‚é
-function! s:autoCloseQuickFix()
-  let qllen = min([10, len(getqflist())])
-  cclose
-  if qllen
-    execute 'cw' . qllen
-    normal <C-W><C-W>
-  endif
-  redraw
-endfunction
-
-autocmd QuickFixCmdPost * :call s:autoCloseQuickFix()
-
-" fugitive.vim
-nnoremap <unique> gG :exec ':silent Ggrep ' . expand('<cword>')<CR>
-
-" quickfix ‚ğ•Â‚¶‚é
+" close quickfix
 nnoremap <unique> ec :cclose<CR>
-
-" jptemplate.vim
-let g:jpTemplateKey = '<Tab>'
-
-" “K“–‚Èƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚Ìì¬
-command! -nargs=0 NewTmp :new `=tempname().'.vim'`
-
-" “K“–‚É CSS ‚ğ JS ‚Û‚­•ÏŠ·
-function! CSSToJS(sLine, eLine)
-  let prefix = ':'  . a:sLine . ',' . a:eLine  . 'substitute'
-  let cmd = prefix . '/\v\-([a-z])/\u\1/g'
-  silent execute cmd
-  let cmd =  prefix . '/\v;?$/";'
-  silent execute cmd
-  let cmd = prefix . '/\v:\s*/ = "/'
-  silent execute cmd
-endfunction
-command! -range CSSToJS :call CSSToJS(<line1>, <line2>)
-
 
 noremap! <C-b> <Left>
 noremap! <C-f> <Right>
@@ -449,31 +297,7 @@ let QFixHowm_MruFileMax = 50
 let QFixHowm_Title = '='
 " let disable_MyQFix = 1
 
-"ƒ^ƒCƒgƒ‹‚É‰½‚à‘‚©‚ê‚Ä‚¢‚È‚¢ê‡AƒGƒ“ƒgƒŠ“à‚©‚ç“K“–‚È•¶‚ğ’T‚µ‚Äİ’è‚·‚éB
-""•¶š”‚Í”¼ŠpŠ·Z‚ÅÅ‘å QFixHowm_Replace_Title_len •¶š‚Ü‚Åg—p‚·‚éB0‚È‚ç‰½‚à‚µ‚È‚¢B
-"let QFixHowm_Replace_Title_Len = 64
 
-"‘ÎÛ‚É‚È‚é‚Ì‚Í QFixHowm_Replace_Title_Pattern
-"‚Ì³‹K•\Œ»‚Éˆê’v‚·‚éƒ^ƒCƒgƒ‹ƒpƒ^[ƒ“B
-""ƒfƒtƒHƒ‹ƒg‚Å‚ÍŸ‚Ì³‹K•\Œ»‚ªİ’è‚³‚ê‚Ä‚¢‚éB
-"let QFixHowm_Replace_Title_Pattern = '^'.g:QFixHowm_Title.'\s*$'
-
-"V‹KƒGƒ“ƒgƒŠ‚ÌÛA–{•¶‚©‚ç‘‚«n‚ß‚éB
-"let QFixHowm_Cmd_New = "i".QFixHowm_Title." \<CR>\<C-r>=strftime(\"[%Y-%m-%d%H:%M]\")\<CR>\<CR>\<ESC>$"
-"",C‚Å‘}“ü‚³‚ê‚éV‹KƒGƒ“ƒgƒŠ‚ÌƒRƒ}ƒ“ƒh
-"let QFixHowm_Key_Cmd_C = "o<ESC>".QFixHowm_Cmd_New
-
-" }}}
-
-" omnifunc ‚ğ“K“–‚É—LŒø‰»
-" if has("autocmd") && exists("+omnifunc")
-"   autocmd Filetype *
-"         \   if &omnifunc == "" |
-"         \           setlocal omnifunc=syntaxcomplete#Complete |
-"         \   endif
-" endif
-
-" noexpandtab ‚·‚éƒfƒBƒŒƒNƒgƒŠ‚ğw’è
 autocmd BufNewFile,BufRead */chromekeyconfig/* setlocal noexpandtab
 
 " debuglet
