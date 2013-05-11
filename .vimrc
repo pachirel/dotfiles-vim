@@ -22,6 +22,7 @@ Bundle 'pachirel/vim-rails'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/Align'
+Bundle 'vim-scripts/yanktmp.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kchmck/vim-coffee-script'
 
