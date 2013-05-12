@@ -26,6 +26,8 @@ Bundle 'vim-scripts/yanktmp.vim'
 Bundle 'vim-scripts/renamer.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'rking/ag.vim'
+Bundle 'othree/eregex.vim'
 
 filetype plugin indent on
 
