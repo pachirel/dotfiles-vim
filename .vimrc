@@ -138,7 +138,6 @@ highlight SpecialKey ctermbg=2 guibg=#ffcccc
 highlight MatchParen cterm=none ctermbg=15 ctermfg=0
 highlight Search ctermbg=5 ctermfg=0
 
-" highlight ã‘‚«
 autocmd VimEnter,WinEnter * highlight SpecialKey ctermbg=0
 autocmd VimEnter,WinEnter * highlight PmenuSel ctermbg=12
 
@@ -312,7 +311,6 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
 highlight JpSpace cterm=none ctermbg=15 ctermfg=0
-au BufRead,BufNew * match JpSpace /ã€€/
 
 function StripTrailingWhitespaces()
   let pos = getpos(".")
