@@ -38,7 +38,7 @@ set nobackup    " Don't keep a backup file
 " set viminfo='50,<1000,s100,\"50 " read/write a .viminfo file, don't store more than
 set viminfo='500,<10000,s1000,\"500 " read/write a .viminfo file, don't store more than
 "set viminfo='50,<1000,s100,:0,n~/.vim/viminfo
-set history=1000 " keep 50 lines of command line history
+set history=100 " keep 50 lines of command line history
 set ruler   " show the cursor position all the time
 
 " Suffixes that get lower priority when doing tab completion for filenames.
@@ -64,7 +64,7 @@ augroup filetype
   au BufRead reportbug.*    set ft=mail
   au BufRead reportbug-*    set ft=mail
 augroup END
-"
+
 set expandtab
 set tabstop=2
 set softtabstop=2
@@ -79,7 +79,7 @@ set hlsearch
 set noincsearch
 set list
 set listchars=tab:\ \ ,trail:\
-"
+
 set formatoptions+=r
 set showcmd
 set showmatch
@@ -93,13 +93,6 @@ autocmd FileType svn :set fileencoding=utf-8
 autocmd FileType git :set fileencoding=utf-8
 
 set ambiwidth=double
-
-if has("autochdir")
-  set autochdir
-  set tags=tags;
-else
-  set tags=./tags,./../tags,./*/tags,./../../tags,./../../../tags,./../../../../tags,./../../../../../tags
-endif
 
 nnoremap <C-z> <C-t>
 
@@ -121,9 +114,6 @@ vnoremap k gk
 
 " nnoremap + <C-W>+
 " nnoremap - <C-W>-
-
-" 前回終了したカーソル行に移動
-" autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 " Functions
 function! ShebangExecute()
@@ -179,13 +169,6 @@ nnoremap ,y :YRShow<CR>
 cnoremap <C-U> <C-E><C-U>
 
 set nofoldenable
-
-" folding keymap
-nnoremap zz za
-nnoremap zZ zA
-
-" htmlomni
-" autocmd FileType html set filetype=xhtml
 
 " surround.vim
 let g:surround_103 = "_('\r')"  " 103 = g
