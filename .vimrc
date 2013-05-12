@@ -182,9 +182,16 @@ let g:surround_{char2nr('d')} = "def \1def\1\2args\r..*\r(&)\2 \r end"
 let g:surround_{char2nr('p')} = "\1method\1 do \2args\r..*\r|&| \2\r end"
 let g:surround_{char2nr('P')} = "\1method\1 {\2args\r..*\r|&|\2 \r }"
 
+" ctrlp.vim
+
+let g:ctrlp_extensions = ['buffertag', 'line', 'mixed']
+nnoremap <Leader>. :CtrlPTag<cr>
+nnoremap ls :CtrlPBuffer<cr>
+
 nnoremap g' cs'g
 nnoremap g" cs"G
 
+" Short cut previous buffer
 nnoremap <Space> <C-^>
 
 " nomatchparent
@@ -271,6 +278,11 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
+" Rspec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()
+map <Leader>s :call RunNearestSpec()
+map <Leader>l :call RunLastSpec()
+
 " load ~/.vimrc.local
 if filereadable(expand('$HOME/.vimrc.local'))
   source ~/.vimrc.local
@@ -292,7 +304,7 @@ nnoremap <C-h> <C-w>h
 
 highlight JpSpace cterm=none ctermbg=15 ctermfg=0
 
-function StripTrailingWhitespaces()
+function! StripTrailingWhitespaces()
   let pos = getpos(".")
   %s/\s\+$//e
   call setpos(".", pos)
@@ -301,8 +313,4 @@ autocmd BufWritePre * :call StripTrailingWhitespaces()
 
 " Open vimrc instantly
 nnoremap <Space>. :sp $MYVIMRC<CR>
-
-" Rspec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()
-map <Leader>s :call RunNearestSpec()
-map <Leader>l :call RunLastSpec()
+nnoremap lv :source $MYVIMRC<CR>
