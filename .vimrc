@@ -7,18 +7,19 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'ciaranm/detectindent'
-Bundle 'tpope/vim-endwise'
 Bundle 'pangloss/vim-javascript'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimshell'
 Bundle 'Shougo/neocomplcache'
-Bundle 'tpope/vim-haml'
 Bundle 'thinca/vim-quickrun'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-vividchalk'
-Bundle 'Shougo/vimshell'
 Bundle 'tpope/vim-fugitive'
 Bundle 'pachirel/vim-rails'
+Bundle 'thoughtbot/vim-rspec'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/Align'
@@ -103,20 +104,12 @@ set complete+=k
 
 nnoremap <C-]> g<C-]>
 
-
-if &term =~ "screen"
-  autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | silent! exe '!echo -n "kv:%\\"' | endif
-endif
-
 set cedit=<C-O>
 
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
-
-" nnoremap + <C-W>+
-" nnoremap - <C-W>-
 
 " Functions
 function! ShebangExecute()
@@ -248,23 +241,6 @@ noremap! <C-e> <End>
 inoremap <silent> <expr> <C-e> (pumvisible() ? "\<C-e>" : "\<End>")
 noremap! <C-d> <Del>
 
-" {{{ QFixHowm.vim
-let QFixHowm_Key = 'g'
-if has('win32')
-  let howm_dir             = 'c:/dropbox/My Dropbox/howm'
-  let QFixHowm_MruFile     = 'c:/dropbox/My Dropbox/howm/.howm-mru'
-else
-  let howm_dir             = '~/Dropbox/howm'
-  let QFixHowm_MruFile     = '~/Dropbox/howm/.howm-mru'
-end
-let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.howm'
-let howm_fileencoding    = 'utf-8'
-let howm_fileformat      = 'unix'
-let QFixHowm_MruFileMax = 50
-let QFixHowm_Title = '='
-" let disable_MyQFix = 1
-
-
 autocmd BufNewFile,BufRead */chromekeyconfig/* setlocal noexpandtab
 
 " debuglet
@@ -301,10 +277,14 @@ if filereadable(expand('$HOME/.vimrc.local'))
 endif
 
 set number
+
+" Clear highlight search
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
+
+" Use ; instead of : to save my pinky
 nmap ; :
 
-autocmd InsertLeave,CmdwinLeave * set imdisable
+" Switch window easily
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
@@ -320,4 +300,9 @@ endfunction
 autocmd BufWritePre * :call StripTrailingWhitespaces()
 
 " Open vimrc instantly
-nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
+nnoremap <Space>. :sp $MYVIMRC<CR>
+
+" Rspec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()
+map <Leader>s :call RunNearestSpec()
+map <Leader>l :call RunLastSpec()
