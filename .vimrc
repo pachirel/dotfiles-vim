@@ -111,6 +111,8 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
+let mapleader=','
+
 " Functions
 function! ShebangExecute()
   let m = matchlist(getline(1), '#!\(.*\)')
@@ -186,7 +188,7 @@ let g:surround_{char2nr('P')} = "\1method\1 {\2args\r..*\r|&|\2 \r }"
 
 let g:ctrlp_extensions = ['buffertag', 'line', 'mixed']
 nnoremap <Leader>. :CtrlPTag<cr>
-nnoremap ls :CtrlPBuffer<cr>
+nnoremap <Leader>ls :CtrlPBuffer<cr>
 
 nnoremap g' cs'g
 nnoremap g" cs"G
@@ -313,4 +315,11 @@ autocmd BufWritePre * :call StripTrailingWhitespaces()
 
 " Open vimrc instantly
 nnoremap <Space>. :sp $MYVIMRC<CR>
-nnoremap lv :source $MYVIMRC<CR>
+nnoremap <Leader>lv :source $MYVIMRC<CR>
+
+" Edit file in same directory
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
