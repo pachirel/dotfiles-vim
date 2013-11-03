@@ -20,6 +20,7 @@ Bundle 'tpope/vim-vividchalk'
 Bundle 'tpope/vim-fugitive'
 Bundle 'pachirel/vim-rails'
 Bundle 'thoughtbot/vim-rspec'
+Bundle 'tpope/vim-bundler'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/Align'
@@ -136,14 +137,14 @@ highlight Search ctermbg=5 ctermfg=0
 autocmd VimEnter,WinEnter * highlight SpecialKey ctermbg=0
 autocmd VimEnter,WinEnter * highlight PmenuSel ctermbg=12
 
-" encoding
-nnoremap <silent> eu :set fenc=utf-8<CR>
-nnoremap <silent> ee :set fenc=euc-jp<CR>
-nnoremap <silent> es :set fenc=cp932<CR>
-" encode reopen encoding
-nnoremap <silent> eru :e ++enc=utf-8 %<CR>
-nnoremap <silent> ere :e ++enc=euc-jp %<CR>
-nnoremap <silent> ers :e ++enc=cp932 %<CR>
+"" encoding
+"nnoremap <silent> eu :set fenc=utf-8<CR>
+"nnoremap <silent> ee :set fenc=euc-jp<CR>
+"nnoremap <silent> es :set fenc=cp932<CR>
+"" encode reopen encoding
+"nnoremap <silent> eru :e ++enc=utf-8 %<CR>
+"nnoremap <silent> ere :e ++enc=euc-jp %<CR>
+"nnoremap <silent> ers :e ++enc=cp932 %<CR>
 
 " paste/nopaste
 nnoremap ep :set paste<CR>
@@ -316,6 +317,7 @@ autocmd BufWritePre * :call StripTrailingWhitespaces()
 " Open vimrc instantly
 nnoremap <Space>. :sp $MYVIMRC<CR>
 nnoremap <Leader>lv :source $MYVIMRC<CR>
+vnoremap <silent> <C-h> :s/:\([a-zA-Z0-9_]\+\)\s*=>/\1:/g<CR>
 
 " Edit file in same directory
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
