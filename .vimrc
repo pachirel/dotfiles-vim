@@ -328,6 +328,12 @@ map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
 "" Unite.vim {{{
+let g:unite_enable_start_insert=1
+
+nnoremap <C-P> :Unite buffer<CR>
+nnoremap <C-N> :Unite -buffer-name=file file<CR>
+nnoremap <C-Z> :Unite file_mru<CR>
+
 nnoremap [unite] <Nop>
 nmap <Leader>f [unite]
 
