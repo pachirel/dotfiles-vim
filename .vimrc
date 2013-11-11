@@ -13,6 +13,7 @@ Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/neocomplcache'
+Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-endwise'
@@ -27,7 +28,6 @@ Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/Align'
 Bundle 'vim-scripts/yanktmp.vim'
 Bundle 'vim-scripts/renamer.vim'
-Bundle 'kien/ctrlp.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'rking/ag.vim'
 Bundle 'othree/eregex.vim'
@@ -100,8 +100,6 @@ autocmd FileType git :set fileencoding=utf-8
 
 set ambiwidth=double
 
-nnoremap <C-z> <C-t>
-
 set complete+=k
 
 nnoremap <C-]> g<C-]>
@@ -112,8 +110,6 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
-
-let mapleader=','
 
 " Functions
 function! ShebangExecute()
@@ -186,17 +182,32 @@ let g:surround_{char2nr('d')} = "def \1def\1\2args\r..*\r(&)\2 \r end"
 let g:surround_{char2nr('p')} = "\1method\1 do \2args\r..*\r|&| \2\r end"
 let g:surround_{char2nr('P')} = "\1method\1 {\2args\r..*\r|&|\2 \r }"
 
-" ctrlp.vim
-
-let g:ctrlp_extensions = ['buffertag', 'line', 'mixed']
-nnoremap <Leader>. :CtrlPTag<cr>
-nnoremap <Leader>ls :CtrlPBuffer<cr>
-
 nnoremap g' cs'g
 nnoremap g" cs"G
 
+"" General key mapping
+
+let mapleader = "\<Space>"
+
 " Short cut previous buffer
-nnoremap <Space> <C-^>
+nnoremap <Leader>k <C-^>
+
+" Use ; instead of : to save my pinky
+nnoremap ; :
+nnoremap : ;
+
+" Disable not used keys
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
+nnoremap Q <Nop>
+
+nnoremap s *
+
+nnoremap n nzz
+nnoremap N Nzz
+
+" Clear highlight search
+nmap <ESC><ESC> ;nohlsearch<CR><ESC>
 
 " nomatchparent
 if !has('gui')
@@ -209,8 +220,6 @@ inoremap <C-W> <C-G>u<C-W>
 inoremap <C-U> <C-G>u<C-U>
 
 set grepprg=internal
-
-nnoremap <unique> g/ :exec ':vimgrep /' . getreg('/') . '/j %\|cwin'<CR>
 
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
@@ -294,12 +303,6 @@ endif
 
 set number
 
-" Clear highlight search
-nmap <ESC><ESC> :nohlsearch<CR><ESC>
-
-" Use ; instead of : to save my pinky
-nmap ; :
-
 " Switch window easily
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -316,33 +319,31 @@ endfunction
 autocmd BufWritePre * :call StripTrailingWhitespaces()
 
 " Open vimrc instantly
-nnoremap <Space>. :sp $MYVIMRC<CR>
-nnoremap <Leader>lv :source $MYVIMRC<CR>
+nnoremap <Leader>. :sp $MYVIMRC<CR>
+nnoremap <Leader>rc :source $MYVIMRC<CR>
 vnoremap <silent> <C-h> :s/:\([a-zA-Z0-9_]\+\)\s*=>/\1:/g<CR>
 
 " Edit file in same directory
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
+map <leader>ew ;e %%
+map <leader>es ;sp %%
+map <leader>ev ;vsp %%
+map <leader>et ;tabe %%
 
 "" Unite.vim {{{
 let g:unite_enable_start_insert=1
 
-nnoremap <C-P> :Unite buffer<CR>
-nnoremap <C-N> :Unite -buffer-name=file file<CR>
-nnoremap <C-Z> :Unite file_mru<CR>
-
 nnoremap [unite] <Nop>
-nmap <Leader>f [unite]
+nmap <Leader>u [unite]
 
-nnoremap [unite]u  :<C-u>Unite -no-split<Space>
-nnoremap <silent> [unite]f :<C-u>Unite<Space>buffer<CR>
 nnoremap <silent> [unite]b :<C-u>Unite<Space>bookmark<CR>
+nnoremap <silent> [unite]f :<C-u>Unite<Space>file<CR>
 nnoremap <silent> [unite]m :<C-u>Unite<Space>file_mru<CR>
 nnoremap <silent> [unite]r :<C-u>UniteWithBufferDir file<CR>
 nnoremap <silent> ,vr :UniteResume<CR>
+
+nnoremap <Leader>f :<C-u>Unite<Space>file<CR>
+nnoremap <Leader>m :<C-u>Unite<Space>file_mru<CR>
 
 " vinarise
 let g:vinarise_enable_auto_detect = 1
