@@ -35,6 +35,7 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'othree/eregex.vim'
 NeoBundle 'neowit/vim-force.com'
+NeoBundle 'scrooloose/nerdtree'
 
 NeoBundleCheck
 
@@ -351,3 +352,7 @@ nnoremap <silent> ,vb :Unite build<CR>
 nnoremap <silent> ,vcb :Unite build:!<CR>
 nnoremap <silent> ,vch :UniteBuildClearHighlight<CR>
 "" }}}
+
+"" NERDTree
+
+nnoremap <C-E> :NERDTree<CR>
