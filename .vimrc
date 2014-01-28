@@ -334,6 +334,15 @@ map <leader>et ;tabe %%
 "" Unite.vim {{{
 let g:unite_enable_start_insert=1
 
+call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \ 'ignore_pattern', join([
+      \ '\.git/',
+      \ '\.sass-cache/',
+      \ ], '\|'))
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+
 nnoremap [unite] <Nop>
 nmap <Leader>u [unite]
 
@@ -341,8 +350,7 @@ nnoremap <silent> [unite]b :<C-u>Unit bookmark<CR>
 nnoremap <silent> [unite]r :<C-u>UniteWithBufferDir file<CR>
 nnoremap <silent> ,vr :UniteResume<CR>
 
-nnoremap <Leader>f :<C-u>Unite file file/new file_rec -buffer-name=file<CR>
-nnoremap <Leader>b :<C-u>Unite buffer file_mru file_rec<CR>
+nnoremap <C-O> :<C-u>Unite -buffer-name=file -start-insert buffer file<CR>
 
 " vinarise
 let g:vinarise_enable_auto_detect = 1
