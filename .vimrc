@@ -65,13 +65,6 @@ if &term =~ "xterm-debian" || &term =~ "xterm-xfree86" || &term =~ "xterm-256col
  set t_Sb=[4%dm
 endif
 
-syntax on
-
-if has("autocmd")
-  filetype plugin on
-  filetype indent on
-endif
-
 " Some Debian-specific things
 augroup filetype
   au BufRead reportbug.*    set ft=mail
