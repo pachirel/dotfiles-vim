@@ -1,38 +1,45 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-Bundle 'gmarik/vundle'
+call neobundle#rc(expand('~/.vim/bundle/'))
 
-Bundle 'ciaranm/detectindent'
-Bundle 'pangloss/vim-javascript'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/neocomplcache'
-Bundle 'thinca/vim-ref'
-Bundle 'thinca/vim-quickrun'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-vividchalk'
-Bundle 'tpope/vim-fugitive'
-Bundle 'pachirel/vim-rails'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'tpope/vim-bundler'
-Bundle 'vim-scripts/YankRing.vim'
-Bundle 'vim-scripts/L9'
-Bundle 'vim-scripts/Align'
-Bundle 'vim-scripts/yanktmp.vim'
-Bundle 'vim-scripts/renamer.vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'rking/ag.vim'
-Bundle 'othree/eregex.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'ciaranm/detectindent'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'tpope/vim-haml'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-vividchalk'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'thoughtbot/vim-rspec'
+NeoBundle 'tpope/vim-bundler'
+NeoBundle 'vim-scripts/YankRing.vim'
+NeoBundle 'vim-scripts/L9'
+NeoBundle 'vim-scripts/Align'
+NeoBundle 'vim-scripts/yanktmp.vim'
+NeoBundle 'vim-scripts/renamer.vim'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'othree/eregex.vim'
+NeoBundle 'neowit/vim-force.com'
+
+NeoBundleCheck
 
 filetype plugin indent on
+syntax on
 
 scriptencoding utf-8
 
