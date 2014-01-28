@@ -336,14 +336,12 @@ let g:unite_enable_start_insert=1
 nnoremap [unite] <Nop>
 nmap <Leader>u [unite]
 
-nnoremap <silent> [unite]b :<C-u>Unite<Space>bookmark<CR>
-nnoremap <silent> [unite]f :<C-u>Unite<Space>file<CR>
-nnoremap <silent> [unite]m :<C-u>Unite<Space>file_mru<CR>
+nnoremap <silent> [unite]b :<C-u>Unit bookmark<CR>
 nnoremap <silent> [unite]r :<C-u>UniteWithBufferDir file<CR>
 nnoremap <silent> ,vr :UniteResume<CR>
 
-nnoremap <Leader>f :<C-u>Unite<Space>file<CR>
-nnoremap <Leader>m :<C-u>Unite<Space>file_mru<CR>
+nnoremap <Leader>f :<C-u>Unite file file/new file_rec -buffer-name=file<CR>
+nnoremap <Leader>b :<C-u>Unite buffer file_mru file_rec<CR>
 
 " vinarise
 let g:vinarise_enable_auto_detect = 1
