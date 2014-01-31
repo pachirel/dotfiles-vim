@@ -364,3 +364,6 @@ nnoremap <silent> ,vch :UniteBuildClearHighlight<CR>
 "" NERDTree
 
 nnoremap <C-E> :NERDTree<CR>
+
+"" Filetype
+au BufRead,BufNewFile *.md set filetype=markdown
