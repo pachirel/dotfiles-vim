@@ -252,7 +252,7 @@ vnoremap <silent> _ <Esc>`<zt:execute (line("'>") - line("'<") + 1) 'wincmd' '_'
 command! -range=% Source split `=tempname()` | call append(0, getbufline('#', <line1>, <line2>)) | write | source % | bdelete
 
 " close quickfix
-nnoremap <unique> ec :cclose<CR>
+nnoremap ec :cclose<CR>
 
 noremap! <C-b> <Left>
 noremap! <C-f> <Right>
