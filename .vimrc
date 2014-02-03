@@ -19,6 +19,7 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-haml'
+NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-vividchalk'
@@ -293,10 +294,11 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-" Rspec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()
-map <Leader>s :call RunNearestSpec()
-map <Leader>l :call RunLastSpec()
+" vim-rspec mappings
+let g:rspec_command = "Dispatch rspec {spec}"
+nmap <Leader>c :call RunCurrentSpecFile()
+nmap <Leader>n :call RunNearestSpec()
+nmap <Leader>l :call RunLastSpec()
 
 " load ~/.vimrc.local
 if filereadable(expand('$HOME/.vimrc.local'))
