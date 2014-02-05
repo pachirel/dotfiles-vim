@@ -37,6 +37,8 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'othree/eregex.vim'
 NeoBundle 'neowit/vim-force.com'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'alpaca-tc/alpaca_powertabline'
+NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim' }
 
 NeoBundleCheck
 
