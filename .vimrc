@@ -295,10 +295,10 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " vim-rspec mappings
-let g:rspec_command = "Dispatch rspec {spec}"
-nmap <Leader>c :call RunCurrentSpecFile()
-nmap <Leader>n :call RunNearestSpec()
-nmap <Leader>l :call RunLastSpec()
+let g:rspec_command = "Dispatch bundle exec spring rspec {spec}"
+nnoremap [c :call RunCurrentSpecFile()<CR>
+nnoremap [n :call RunNearestSpec()<CR>
+nnoremap [l :call RunLastSpec()<CR>
 
 " load ~/.vimrc.local
 if filereadable(expand('$HOME/.vimrc.local'))
