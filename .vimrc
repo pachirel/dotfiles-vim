@@ -37,8 +37,7 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'othree/eregex.vim'
 NeoBundle 'neowit/vim-force.com'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'alpaca-tc/alpaca_powertabline'
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim' }
+NeoBundle 'bling/vim-airline'
 
 NeoBundleCheck
 
@@ -372,3 +371,7 @@ nnoremap <C-E> :NERDTree<CR>
 
 "" Filetype
 au BufRead,BufNewFile *.md set filetype=markdown
+
+"" vim-airline
+let g:airline_powerline_fonts = 1
+set t_Co=256
