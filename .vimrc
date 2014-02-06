@@ -97,6 +97,7 @@ set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{']'}%y%{fugi
 set wildmode=list:longest
 set hidden
 set autoread
+set cursorline
 
 autocmd FileType svn :set fileencoding=utf-8
 autocmd FileType git :set fileencoding=utf-8
