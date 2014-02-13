@@ -38,11 +38,12 @@ NeoBundle 'othree/eregex.vim'
 NeoBundle 'neowit/vim-force.com'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'altercation/vim-colors-solarized'
 
 NeoBundleCheck
 
 filetype plugin indent on
-syntax on
+syntax enable
 
 scriptencoding utf-8
 
@@ -98,6 +99,8 @@ set wildmode=list:longest
 set hidden
 set autoread
 set cursorline
+set background=dark
+colorscheme vividchalk
 
 autocmd FileType svn :set fileencoding=utf-8
 autocmd FileType git :set fileencoding=utf-8
