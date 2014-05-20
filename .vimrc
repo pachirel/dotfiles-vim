@@ -393,3 +393,6 @@ au BufRead,BufNewFile *.md set filetype=markdown
 "" vim-airline
 let g:airline_powerline_fonts = 1
 set t_Co=256
+
+"" Clipboard settings
+set clipboard=unnamed
