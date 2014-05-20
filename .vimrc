@@ -208,7 +208,7 @@ nnoremap ZQ <Nop>
 nnoremap Q <Nop>
 
 nnoremap s *
-nnoremap [s :Ag <cword><CR>
+nnoremap [s :Ag! -f <cword> <CR>
 
 nnoremap n nzz
 nnoremap N Nzz
