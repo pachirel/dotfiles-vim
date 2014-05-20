@@ -39,6 +39,9 @@ NeoBundle 'neowit/vim-force.com'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'rizzatti/funcoo.vim'
+NeoBundle 'rizzatti/dash.vim'
+NeoBundle 'kana/vim-fakeclip'
 
 NeoBundleCheck
 
