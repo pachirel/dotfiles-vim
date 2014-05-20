@@ -15,7 +15,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-haml'
@@ -275,32 +275,47 @@ autocmd BufNewFile,BufRead */chromekeyconfig/* setlocal noexpandtab
 autocmd BufWritePost */debuglet.js silent! execute '!debuglet.rb %'
 autocmd BufNewFile */debuglet.js silent! execute 'r!debuglet.rb'
 
-" NeoCompleCache.vim
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_auto_select = 1
-
+" NeoComplete.vim
+let g:neocomplete_enable_at_startup = 1
 " Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplete_enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
+let g:neocomplete#sources#syntax#min_syntax_length = 3
 
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
 " <CR>: close popup and save indent.
-" inoremap <expr><CR>  neocomplcache#smart_close_popup() . (&indentexpr != '' " ? "\<C-f>\<CR>X\<BS>":"\<CR>")
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
 
-" vim-rspec mappings
-let g:rspec_command = "Dispatch bundle exec spring rspec {spec}"
+autocmd FileType ruby
+  \ if expand("%") =~# '_spec\.rb$' |
+  \   compiler rspec | setl makeprg=bundle\ exec\ spring\ rspec\ $*|
+  \ else |
+  \   compiler ruby | setl makeprg=ruby\ -wc\ \"%:p\" |
+  \ endif
+
+let g:rspec_command = "compiler rspec | Make rspec {spec}"
 nnoremap [c :call RunCurrentSpecFile()<CR>
 nnoremap [n :call RunNearestSpec()<CR>
 nnoremap [l :call RunLastSpec()<CR>
