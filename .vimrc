@@ -66,11 +66,11 @@ set ruler   " show the cursor position all the time
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
 " We know xterm-debian is a color terminal
-if &term =~ "xterm-debian" || &term =~ "xterm-xfree86" || &term =~ "xterm-256color"
- set t_Co=16
- set t_Sf=[3%dm
- set t_Sb=[4%dm
-endif
+"if &term =~ "xterm-debian" || &term =~ "xterm-xfree86" || &term =~ "xterm-256color"
+" set t_Co=16
+" set t_Sf=[3%dm
+" set t_Sb=[4%dm
+"endif
 
 " Some Debian-specific things
 augroup filetype
@@ -101,8 +101,10 @@ set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{']'}%y%{fugi
 set wildmode=list:longest
 set hidden
 set autoread
-set cursorline
+
+" Appearance
 set background=dark
+highlight Normal ctermfg=grey ctermbg=darkblue
 colorscheme vividchalk
 
 autocmd FileType svn :set fileencoding=utf-8
@@ -130,12 +132,6 @@ function! ShebangExecute()
     execute '!' &ft ' %'
   endif
 endfunction
-
-if !has('macunix')
-  highlight Visual ctermbg=0
-else
-  highlight Visual ctermbg=8
-end
 
 highlight SpecialKey ctermbg=2 guibg=#ffcccc
 highlight MatchParen cterm=none ctermbg=15 ctermfg=0
