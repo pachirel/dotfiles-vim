@@ -5,9 +5,9 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
-
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
+call neobundle#end()
 
 NeoBundle 'ciaranm/detectindent'
 NeoBundle 'pangloss/vim-javascript'
@@ -42,6 +42,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'kana/vim-fakeclip'
+NeoBundle 'negipo/unite-rails'
 
 NeoBundleCheck
 
@@ -65,12 +66,7 @@ set ruler   " show the cursor position all the time
 " These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
-" We know xterm-debian is a color terminal
-"if &term =~ "xterm-debian" || &term =~ "xterm-xfree86" || &term =~ "xterm-256color"
-" set t_Co=16
-" set t_Sf=[3%dm
-" set t_Sb=[4%dm
-"endif
+set t_Co=256
 
 " Some Debian-specific things
 augroup filetype
@@ -209,6 +205,7 @@ nnoremap Q <Nop>
 
 nnoremap s *
 nnoremap [s :Ag! -f <cword> <CR>
+let g:agprg="ag --column --smart-case"
 
 nnoremap n nzz
 nnoremap N Nzz
@@ -236,6 +233,7 @@ function! Bgrep(word)
   silent cwin
 endfunction
 command! -nargs=1 Bgrep :call Bgrep(<f-args>)
+command -nargs=1 E execute('silent! !mkdir -p "$(dirname "<args>")"') <Bar> e <args>
 
 " changelog
 let g:changelog_username = "Yuta Shimizu"
@@ -391,8 +389,11 @@ nnoremap <C-E> :NERDTree<CR>
 au BufRead,BufNewFile *.md set filetype=markdown
 
 "" vim-airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 set t_Co=256
 
 "" Clipboard settings
 set clipboard=unnamed
+
+"" fugitive
+let g:fugitive_github_domains = ['github.cookpad.com']
