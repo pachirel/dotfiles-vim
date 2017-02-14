@@ -1,0 +1,18 @@
+snippet ngcontroller
+  (function() {
+    'use strict';
+
+    window.app.controller('${2:Controller}Controller', $2Controller);
+
+    /* @ngInject */
+    function $2Controller(${3:dependencies}) {
+      var vm = this;
+
+      activate();
+
+      ////////////////
+
+      function activate() {
+      }
+    }
+  })();

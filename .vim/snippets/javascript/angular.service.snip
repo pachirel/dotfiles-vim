@@ -1,0 +1,18 @@
+snippet ngservice
+  (function() {
+    'use strict';
+
+    window.app.factory('${2:Service}Service', $2Service);
+
+    /* @ngInject */
+    function $2Service(${3:dependencies}) {
+      var service = {
+        ${4:func}: $4,
+      };
+
+      ////////////////
+
+      function $4() {
+      }
+    }
+  })();

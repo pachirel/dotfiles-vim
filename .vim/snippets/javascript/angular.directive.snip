@@ -1,0 +1,36 @@
+snippet ngdirective
+  (function() {
+    'use strict';
+
+    window.app.directive('sc${2:directive}', sc$2);
+
+    sc$2.$inject = [
+    ];
+
+    /* @ngInject */
+    function sc$2(
+    ) {
+      // Usage:
+      //
+      // Creates:
+      //
+      var directive = {
+        bindToController: true,
+        controller: ${4:Controller},
+        controllerAs: 'vm',
+        link: link,
+        restrict: 'E',
+        scope: {
+        }
+      };
+      return directive;
+
+      function link(scope, element, attrs, ctrl) {
+      }
+    }
+
+    /* @ngInject */
+    function $4() {
+
+    }
+  })();
