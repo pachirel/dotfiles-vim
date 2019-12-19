@@ -62,6 +62,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'eafgarland/typescript-vim'
 NeoBundle 'mtscout6/vim-cjsx'
 NeoBundle 'heavenshell/vim-jsdoc'
+NeoBundle 'vim-syntastic/syntastic'
 
 call neobundle#end()
 
@@ -236,7 +237,9 @@ let g:ag_prg="ag --column --smart-case"
 nnoremap n nzz
 nnoremap N Nzz
 
-nmap ng ;OpenNgBuddyFile<CR>
+nmap nb ;OpenNgBuddyFile<CR>
+nmap nj ;OpenNgFile<CR>
+nmap ng ;OpenNgCurrentPath<CR>
 
 " Clear highlight search
 nmap <ESC><ESC> ;nohlsearch<CR><ESC>
@@ -381,8 +384,9 @@ map <leader>et ;tabe %%
 
 " Tab explorer
 
-map <leader>tn ;tabn<CR>
-map <leader>tp ;tabp<CR>
+nmap tn ;tabn<CR>
+nmap tp ;tabp<CR>
+nmap tb ;tabp<CR>
 map <leader>c ;setlocal cursorline! cursorcolumn!<CR>
 
 "" Unite.vim {{{
@@ -532,4 +536,20 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
-let g:neosnippet#snippets_directory='~/.vim/snippets'
+let g:neosnippet#snippets_directory = [ "~/.vim/snippets", "~/.vim/vim-snippets/snippets", "~/src/github.com/matthewsimo/angular-vim-snippets/snippets" ]
+
+" setting for vim-json
+autocmd InsertEnter *.json setlocal conceallevel=2 concealcursor=
+autocmd InsertLeave *.json setlocal conceallevel=2 concealcursor=inc
+
+" syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_scss_checkers=['']
